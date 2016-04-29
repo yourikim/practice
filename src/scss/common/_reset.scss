@@ -1,0 +1,76 @@
+@charset "utf-8";
+/* _reset.scss */
+
+//Common
+body, p, h1, h2, h3, h4, ul, ol, li, dl, dt, dd{
+	margin: 0;
+	padding: 0
+}
+
+body{
+	font-family: Dotum, "돋움", sans-serif;
+	font-size: 12px
+}
+
+ul, ol{
+	list-style: none
+}
+
+em, address{
+	font-style: normal
+}
+
+a, a:hover, a:active, a:focus{
+	text-decoration: none;
+	cursor: pointer
+}
+
+img{
+	border: 0;
+	vertical-align: top
+}
+
+input, select{
+	vertical-align: middle
+}
+
+input{
+	-webkit-appearance: none;
+	-webkit-text-size-adjust: none
+}
+
+input[type=text]{
+	border-radius: 0
+}
+
+input[type=checkbox], input[type=file], input[type=radio]{
+	-webkit-appearance: none;
+	appearance: none;
+	opacity: 0;
+	filter: alpha(opacity=0)
+}
+
+input[type=image]{
+	border-radius: 0;
+	background-color: #f9fafa;
+	background: -webkit-gradient(linear, 0 0, 0 100%, from(#fdfdfd), to(#f9fafa))
+}
+
+input[type=checkbox] + label, input[type=file] + label, input[type=radio] + label, button{
+	cursor: pointer
+}
+
+a span, a em, a strong, a img, a i, a b, a s, a u{
+	cursor: pointer;
+}
+
+.blind{
+	overflow: hidden;
+	position: absolute;
+	top: 0;
+	left: 0;
+	width: 1px;
+	height: 1px;
+	font-size: 0;
+	line-height: 0
+}

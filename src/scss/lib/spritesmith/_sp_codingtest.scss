@@ -1,0 +1,41 @@
+// how to use : Use following mixins.
+// variable : [X-axis] [Y-axis] [offset_x] [offset_y] [width] [height] [total_width] [total_height] [image_url] [image_name] [folder_name]
+    $btn_add: 80px 0px -80px 0px 28px 28px 108px 70px '../img/sp_codingtest.png' 'btn_add' 'sp_codingtest';
+    $btn_tool: 80px 38px -80px -38px 8px 32px 108px 70px '../img/sp_codingtest.png' 'btn_tool' 'sp_codingtest';
+    $icon_play: 0px 0px 0px 0px 70px 70px 108px 70px '../img/sp_codingtest.png' 'icon_play' 'sp_codingtest';
+
+//ancestor
+    $sp_codingtest-width: 108px;
+    $sp_codingtest-height: 70px;
+    $sp_codingtest-image: '../img/sp_codingtest.png';
+    $sp_codingtest-sprites: ($btn_add, $btn_tool, $icon_play, );
+    $sp_codingtest_sprites_name: (btn_add, btn_tool, icon_play, );
+    $sp_codingtest: (108px, 70px, '../img/sp_codingtest.png', $sp_codingtest-sprites, );
+
+
+//mixin
+
+        %sp_codingtest {
+        display: inline-block; //add KYR
+        vertical-align: top;
+        background-image: url('../img/sp_codingtest.png');
+        background-repeat: no-repeat;
+        }
+
+        @mixin sp_codingtest($sprite) {
+        @extend %sp_codingtest;
+        @include spriteSizeSupport1x($sprite);
+        @include spriteBackgroundPositionSupport1x($sprite);
+        }
+
+        @mixin sp_codingtest-size($sprite) {
+        @include spriteSizeSupport1x($sprite);
+        }
+
+        @mixin sp_codingtest-height($sprite) {
+        @include spriteHeight($sprite);
+        }
+
+        @mixin sp_codingtest-position($sprite) {
+        @include spriteBackgroundPositionSupport1x($sprite);
+        }

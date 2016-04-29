@@ -1,0 +1,46 @@
+@charset "utf-8";
+/* _mixin.scss */
+
+@mixin clear{
+	zoom: 1;
+	&:after{
+		display: block;
+		clear: both;
+		content: ''
+	}
+}
+
+@mixin absoluteAllZero{
+	position: absolute;
+	top: 0;
+	left: 0;
+	right: 0;
+	bottom: 0
+}
+
+@mixin borderBox{
+	box-sizing: border-box;
+	-webkit-box-sizing: border-box;
+	-moz-box-sizing: border-box;
+}
+
+@mixin borderRD($bd_radius) {
+	-webkit-border-radius: $bd_radius+px;
+	-moz-border-radius: $bd_radius+px;
+	border-radius: $bd_radius+px;
+}
+
+@mixin ellipsis{
+	overflow: hidden;
+	text-overflow: ellipsis;
+	white-space: nowrap;
+}
+
+//여러줄 말줄임
+@mixin ellipsisMulti($line_num) {
+	display: -webkit-box;
+	overflow: hidden;
+	text-overflow: ellipsis;
+	-webkit-line-clamp: $line_num;
+	-webkit-box-orient: vertical;
+}

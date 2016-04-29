@@ -1,0 +1,52 @@
+{
+// Default options
+'functions': true
+}
+
+// how to use : Use following mixins.
+// variable : [X-axis] [Y-axis] [offset_x] [offset_y] [width] [height] [total_width] [total_height] [image_url] [image_name] [folder_name]
+{{#items}}
+    ${{name}}: {{px.x}} {{px.y}} {{px.offset_x}} {{px.offset_y}} {{px.width}} {{px.height}} {{px.total_width}} {{px.total_height}} '{{{escaped_image}}}' '{{name}}' '{{origin}}';
+{{/items}}
+
+//ancestor
+{{#block "spritesheet"}}
+    ${{spritesheet_info.strings.name_width}}: {{spritesheet.px.width}};
+    ${{spritesheet_info.strings.name_height}}: {{spritesheet.px.height}};
+    ${{spritesheet_info.strings.name_image}}: '{{{spritesheet.escaped_image}}}';
+    ${{spritesheet_info.strings.name_sprites}}: ({{#each sprites}}${{strings.name}}, {{/each}});
+    ${{spritesheet_info.strings.name}}_sprites_name: ({{#each sprites}}{{strings.name}}, {{/each}});
+    ${{spritesheet_info.strings.name}}: ({{spritesheet.px.width}}, {{spritesheet.px.height}}, '{{{spritesheet.escaped_image}}}', ${{spritesheet_info.strings.name_sprites}}, );
+
+{{/block}}
+
+//mixin
+{{#block "sprite-functions"}}
+    {{#if options.functions}}
+
+        %{{spritesheet_info.strings.name}} {
+        display: inline-block; //add KYR
+        vertical-align: top;
+        background-image: url('{{{spritesheet.escaped_image}}}');
+        background-repeat: no-repeat;
+        }
+
+        @mixin {{spritesheet_info.strings.name}}($sprite) {
+        @extend %{{spritesheet_info.strings.name}};
+        @include spriteSizeSupport1x($sprite);
+        @include spriteBackgroundPositionSupport1x($sprite);
+        }
+
+        @mixin {{spritesheet_info.strings.name}}-size($sprite) {
+        @include spriteSizeSupport1x($sprite);
+        }
+
+        @mixin {{spritesheet_info.strings.name}}-height($sprite) {
+        @include spriteHeight($sprite);
+        }
+
+        @mixin {{spritesheet_info.strings.name}}-position($sprite) {
+        @include spriteBackgroundPositionSupport1x($sprite);
+        }
+    {{/if}}
+{{/block}}

@@ -1,0 +1,83 @@
+@charset "utf-8";
+
+// sprite image
+@mixin spriteWidth($sprite) {
+	width: nth($sprite, 5) / 2;
+}
+
+@mixin spriteHeight($sprite) {
+	height: nth($sprite, 6) / 2;
+}
+
+@mixin spriteImage($sprite) {
+	$sprite-image: nth($sprite, 9);
+	background-image: url(#{$sprite-image});
+}
+
+@mixin spriteSize($sprite) {
+	@include spriteWidth($sprite);
+	@include spriteHeight($sprite);
+}
+
+@mixin spriteBackgroundPosition($sprite) {
+	$sprite-offset-x: nth($sprite, 3) / 2;
+	$sprite-offset-y: nth($sprite, 4) / 2;
+
+	$origin: nth($sprite, 11);
+	@extend %#{$origin};
+	background-position: $sprite-offset-x  $sprite-offset-y;
+}
+
+@mixin spriteBackgroundSize($sprite) {
+	-webkit-background-size: (nth($sprite, 7) / 2) (nth($sprite, 8) / 2);
+	background-size: (nth($sprite, 7) / 2) (nth($sprite, 8) / 2);
+}
+
+@mixin sprite($sprite) {
+	$origin: nth($sprite, 11);
+	@extend %#{$origin};
+	@include spriteSize($sprite);
+	@include spriteBackgroundPosition($sprite);
+}
+
+// Support 1x sprite images
+@mixin spriteWidthSupport1x($sprite) {
+	width: nth($sprite, 5);
+}
+
+@mixin spriteHeightSupport1x($sprite) {
+	height: nth($sprite, 6);
+}
+
+@mixin spriteSizeSupport1x($sprite) {
+	@include spriteWidthSupport1x($sprite);
+	@include spriteHeightSupport1x($sprite);
+}
+
+@mixin spriteImageSupport1x($sprite) {
+	$sprite-image: nth($sprite, 9);
+	background-image: url(#{$sprite-image});
+
+	$sprite-image-2x: nth($sprite, 10);
+	@media screen and (-webkit-min-device-pixel-ratio:1.5) {
+		background-image: url(#{$sprite-image-2x});
+	}
+}
+
+@mixin spriteBackgroundPositionSupport1x($sprite) {
+	$sprite-offset-x: nth($sprite, 3);
+	$sprite-offset-y: nth($sprite, 4);
+	background-position: $sprite-offset-x  $sprite-offset-y;
+}
+
+@mixin spriteBackgroundSizeSupport1x($sprite) {
+	-webkit-background-size: (nth($sprite, 7)) (nth($sprite, 8));
+	background-size: (nth($sprite, 7)) (nth($sprite, 8));
+}
+
+@mixin spriteSupport1x($sprite) {
+	$origin: nth($sprite, 12);
+	@extend %#{$origin};
+	@include spriteSizeSupport1x($sprite);
+	@include spriteBackgroundPositionSupport1x($sprite);
+}

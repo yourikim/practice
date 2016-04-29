@@ -1,0 +1,12 @@
+@charset "utf-8";
+/* 160429 KIMYOURI */
+
+@import "common/reset";
+@import "common/variables";
+@import "common/mixin";
+@import "common/placeholders";
+
+@import "lib/spritesmith/sprite_mixins";
+@import "lib/spritesmith/sp_codingtest";
+
+@import "import/component";
